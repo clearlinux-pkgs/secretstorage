@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x6646265B586B83CB (mitya57@gmail.com)
 #
 Name     : secretstorage
-Version  : 3.1.2
-Release  : 34
-URL      : https://files.pythonhosted.org/packages/fd/9f/36197c75d9a09b1ab63f56cb985af6cd858ca3fc41fd9cd890ce69bae5b9/SecretStorage-3.1.2.tar.gz
-Source0  : https://files.pythonhosted.org/packages/fd/9f/36197c75d9a09b1ab63f56cb985af6cd858ca3fc41fd9cd890ce69bae5b9/SecretStorage-3.1.2.tar.gz
-Source1  : https://files.pythonhosted.org/packages/fd/9f/36197c75d9a09b1ab63f56cb985af6cd858ca3fc41fd9cd890ce69bae5b9/SecretStorage-3.1.2.tar.gz.asc
+Version  : 3.2.0
+Release  : 35
+URL      : https://files.pythonhosted.org/packages/e2/d9/d70420b5b97889c1fdbc06658ef25776ec91c0d1c03f43efa39412bc3bc5/SecretStorage-3.2.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/e2/d9/d70420b5b97889c1fdbc06658ef25776ec91c0d1c03f43efa39412bc3bc5/SecretStorage-3.2.0.tar.gz
+Source1  : https://files.pythonhosted.org/packages/e2/d9/d70420b5b97889c1fdbc06658ef25776ec91c0d1c03f43efa39412bc3bc5/SecretStorage-3.2.0.tar.gz.asc
 Summary  : Python bindings to FreeDesktop.org Secret Service API
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -63,20 +63,19 @@ python3 components for the secretstorage package.
 
 
 %prep
-%setup -q -n SecretStorage-3.1.2
-cd %{_builddir}/SecretStorage-3.1.2
+%setup -q -n SecretStorage-3.2.0
+cd %{_builddir}/SecretStorage-3.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583509244
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1605031548
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
@@ -85,7 +84,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/secretstorage
-cp %{_builddir}/SecretStorage-3.1.2/LICENSE %{buildroot}/usr/share/package-licenses/secretstorage/b23eb98a71ae4e71270872be9d167f785ad043d1
+cp %{_builddir}/SecretStorage-3.2.0/LICENSE %{buildroot}/usr/share/package-licenses/secretstorage/b23eb98a71ae4e71270872be9d167f785ad043d1
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
