@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x6646265B586B83CB (mitya57@gmail.com)
 #
 Name     : secretstorage
-Version  : 3.2.0
-Release  : 43
-URL      : https://files.pythonhosted.org/packages/e2/d9/d70420b5b97889c1fdbc06658ef25776ec91c0d1c03f43efa39412bc3bc5/SecretStorage-3.2.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/e2/d9/d70420b5b97889c1fdbc06658ef25776ec91c0d1c03f43efa39412bc3bc5/SecretStorage-3.2.0.tar.gz
-Source1  : https://files.pythonhosted.org/packages/e2/d9/d70420b5b97889c1fdbc06658ef25776ec91c0d1c03f43efa39412bc3bc5/SecretStorage-3.2.0.tar.gz.asc
+Version  : 3.3.1
+Release  : 44
+URL      : https://files.pythonhosted.org/packages/cd/08/758aeb98db87547484728ea08b0292721f1b05ff9005f59b040d6203c009/SecretStorage-3.3.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/cd/08/758aeb98db87547484728ea08b0292721f1b05ff9005f59b040d6203c009/SecretStorage-3.3.1.tar.gz
+Source1  : https://files.pythonhosted.org/packages/cd/08/758aeb98db87547484728ea08b0292721f1b05ff9005f59b040d6203c009/SecretStorage-3.3.1.tar.gz.asc
 Summary  : Python bindings to FreeDesktop.org Secret Service API
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -23,9 +23,9 @@ BuildRequires : cryptography
 BuildRequires : jeepney
 
 %description
-.. image:: https://api.travis-ci.org/mitya57/secretstorage.svg
-:target: https://travis-ci.org/mitya57/secretstorage
-:alt: Travis CI status
+.. image:: https://github.com/mitya57/secretstorage/workflows/tests/badge.svg
+:target: https://github.com/mitya57/secretstorage/actions
+:alt: GitHub Actions status
 .. image:: https://codecov.io/gh/mitya57/secretstorage/branch/master/graph/badge.svg
 :target: https://codecov.io/gh/mitya57/secretstorage
 :alt: Coverage status
@@ -63,15 +63,15 @@ python3 components for the secretstorage package.
 
 
 %prep
-%setup -q -n SecretStorage-3.2.0
-cd %{_builddir}/SecretStorage-3.2.0
+%setup -q -n SecretStorage-3.3.1
+cd %{_builddir}/SecretStorage-3.3.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605031548
+export SOURCE_DATE_EPOCH=1629173876
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -84,7 +84,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/secretstorage
-cp %{_builddir}/SecretStorage-3.2.0/LICENSE %{buildroot}/usr/share/package-licenses/secretstorage/b23eb98a71ae4e71270872be9d167f785ad043d1
+cp %{_builddir}/SecretStorage-3.3.1/LICENSE %{buildroot}/usr/share/package-licenses/secretstorage/b23eb98a71ae4e71270872be9d167f785ad043d1
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
